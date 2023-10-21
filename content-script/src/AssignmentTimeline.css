@@ -1,0 +1,33 @@
+/* Base Style for "vis-item" */
+.vis-item {
+    border: 2px solid #ccc; /* Gray border for all items */
+    background-color: #e0f7fa; /* Light blue background for available items */
+    color: #333; /* Dark text for all items */
+    border-radius: 5px; /* Rounded corners for all items */
+}
+
+/* Style for "done" */
+.vis-item.done {
+    background-color: #dff0d8; /* Light green background for done items */
+    border-color: #3c763d; /* Green border for done items */
+}
+
+/* Style for "locked" */
+.vis-item.locked {
+    background-color: #f5f5f5; /* Lighter gray background for locked items */
+    border-color: #8c8c8c; /* Darker gray border for locked items */
+    color: #8c8c8c; /* Darker gray text for locked items */
+}
+
+/* Style for "past" */
+.vis-item.past:not(.done) {
+    background-color: #f44336; /* Strong red background for past due items not done */
+    border-color: #d32f2f; /* Darker red border for past due items not done */
+    color: #fff; /* White text for better contrast */
+}
+
+/* Style for "soon" */
+.vis-item.soon:not(.done) {
+    background-color: #ffcc80; /* Light orange background for imminent items not done */
+    border-color: #ff9900; /* Darker orange border for imminent items not done */
+}

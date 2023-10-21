@@ -1,0 +1,35 @@
+{
+  "name": "canvas-assignments-timeline-extension",
+  "private": true,
+  "version": "0.1.0",
+  "type": "module",
+  "scripts": {
+    "dev": "vite",
+    "build": "tsc && vite build",
+    "preview": "vite preview"
+  },
+  "dependencies": {
+    "@babel/runtime": "^7.23.2",
+    "lodash": "^4.17.21",
+    "moment": "^2.29.4",
+    "react": "^18.2.0",
+    "react-dom": "^18.2.0",
+    "react-vis-timeline": "^2.0.3",
+    "web-vitals": "^3.0.3",
+    "xss": "^1.0.14"
+  },
+  "devDependencies": {
+    "@crxjs/vite-plugin": "@crxjs/vite-plugin@2.0.0-beta.11",
+    "@types/chrome": "^0.0.197",
+    "@types/node": "^18.8.3",
+    "@types/react": "^18.0.17",
+    "@types/react-dom": "^18.0.6",
+    "@vitejs/plugin-react": "^2.1.0",
+    "typescript": "^4.6.4",
+    "vite": "^3.1.0",
+    "vite-plugin-svgr": "^2.2.1"
+  },
+  "resolutions": {
+    "vis-data": "^7.0.0"
+  }
+}
