@@ -1382,12 +1382,12 @@ uuid@^7.0.0:
   resolved "https://registry.yarnpkg.com/uuid/-/uuid-7.0.3.tgz#c5c9f2c8cf25dc0a372c4df1441c41f5bd0c680b"
   integrity sha512-DPSke0pXhTZgoF/d+WSt2QaKMCFSfx7QegxEWT+JOuHF5aWrKEn0G+ztjuJg/gG8/ItK+rbPCD/yNv8yyih6Cg==
 
-vis-data@^6.5.2, vis-data@^7.0.0:
+vis-data@^6.5.2, vis-data@^7.0.0, vis-data@^7.1.7:
   version "7.1.7"
   resolved "https://registry.yarnpkg.com/vis-data/-/vis-data-7.1.7.tgz#e70475e69e01ed0f4535352ed0eae64a6337f298"
   integrity sha512-Jfrb6Ixyr3jdqFgpCBWnzb4w7PdD3UjOY6vea9yXixoKSLveUj+rAuxByoRKRvdjhsRtsYCEXG6MXjjx+uvGvQ==
 
-vis-timeline@^7.3.6:
+vis-timeline@^7.3.6, vis-timeline@^7.7.2:
   version "7.7.2"
   resolved "https://registry.yarnpkg.com/vis-timeline/-/vis-timeline-7.7.2.tgz#af3565367a0271344b22ee0ecf4694a7459c7803"
   integrity sha512-l7hDBFJ0FI6gX4kzsxAONnAacowK3sHWx3uc5jR1DYs/FAsOEZsHDclVNW3+QAwmV3Xvg61U8//ha6hZNw7G1Q==

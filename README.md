@@ -11,9 +11,11 @@ A Chrome extension designed specifically for Canvas LMS users to provide a visua
 ## Build and run locally
 
 ### Install dependencies
+
 yarn
 
 ### Build the extension
+
 yarn build
 
 ### Load the extension into Chrome
@@ -32,4 +34,6 @@ yarn build
 
 ## Acknowledgements
 
-This project utilizes the framework from the `React TypeScript Chrome Extension` project.
+This project utilizes the framework from the [React TypeScript Chrome Extension](https://github.com/yosevu/react-content-script) project.
+And the adaptation of [vis-timeline for React](https://github.com/razbensimon/react-vis-timeline).
+Also uses [Canvas LMS API](https://canvas.utwente.nl/doc/api/index.html). Docs can be found there.
