@@ -1,7 +1,10 @@
+import ReactDOMServer from 'react-dom/server';
 import React, { useEffect, useState, useRef } from 'react';
 import Timeline from 'react-vis-timeline';
 
-import { fetchUserLocale, fetchCourses, fetchAssignmentsForCourse, DEFAULT_LOCALE, fetchCoursesAndAssignments } from './dataService';
+import { fetchUserLocale, fetchCoursesAndAssignments } from './dataService';
+import TooltipTemplate from './TooltipTemplate';
+import { DEFAULT_LOCALE } from './i18n';
 
 import './AssignmentTimeline.css';
 
@@ -17,28 +20,6 @@ interface Course {
   id: number;
   name: string;
 }
-
-export const createTooltipTemplate = (item: any, _editedData: any) => {
-  const today = new Date();
-  const dueDate = new Date(item.end);
-  const unlockDate = new Date(item.start);
-  const daysUntilDue = Math.ceil((dueDate.getTime() - today.getTime()) / (1000 * 3600 * 24));
-  const daysUntilUnlock = Math.ceil((unlockDate.getTime() - today.getTime()) / (1000 * 3600 * 24));
-
-  const title = `<strong>${item.content}<strong>`;
-  const unlockInfo = `Unlock Date: ${unlockDate.toDateString()} (${daysUntilUnlock >= 0 ? daysUntilUnlock + ' days left' : 'already unlocked'})`;
-  const dueInfo = `Due Date: ${dueDate.toDateString()} (${daysUntilDue >= 0 ? daysUntilDue + ' days left' : 'past due'})`;
-  const markAsDoneHint = `<span style="font-size: 0.8em; color: #999;">(Hint: Click to mark as done)</span>`;
-
-  return `
-      <div>
-        ${title}<br><br>
-        ${unlockInfo}<br>
-        ${dueInfo}<br><br>
-        ${markAsDoneHint}
-      </div>
-  `;
-};
 
 const defaultProps = {
   initialGroups: [],
@@ -62,7 +43,6 @@ const defaultOptions = {
     delay: 0,
     followMouse: true,
     overflowMethod: "cap" as "cap",
-    template: createTooltipTemplate,
   },
 }
 
@@ -75,7 +55,7 @@ const createItems = (assignments: Assignment[], markedAssignmentIds: number[]) =
       id: assignment.id,
       group: assignment.course_id,
       className: generateClassName(assignment, markedAssignmentIds),
-  }));
+    }));
 
 const createGroups = (courses: Course[]) =>
   courses.map(course => ({
@@ -104,6 +84,10 @@ const AssignmentTimeline: React.FC<AssignmentTimelineProps> = ({ initialMarkedAs
   const [courses, setCourses] = useState<Course[]>([]);
   const [assignments, setAssignments] = useState<Assignment[]>([]);
 
+  const tooltipTemplateWithLocale = (item: any, editedData: any) => {    
+    const tooltipElement = TooltipTemplate({ item, editedData, locale });
+    return ReactDOMServer.renderToString(tooltipElement as React.ReactElement);
+  };
 
   const clickHandler = (props: any) => {
     if (!props.item) return;
@@ -113,7 +97,7 @@ const AssignmentTimeline: React.FC<AssignmentTimelineProps> = ({ initialMarkedAs
       const markedAssignmentIds = prevMarkedIds.includes(id)
         ? prevMarkedIds.filter(itemId => itemId !== id)
         : [...prevMarkedIds, id];
-  
+
       chrome.storage.local.set({ markedAssignmentIds });
       return markedAssignmentIds;
     });
@@ -124,7 +108,7 @@ const AssignmentTimeline: React.FC<AssignmentTimelineProps> = ({ initialMarkedAs
       try {
         const userLocale = await fetchUserLocale(baseUrl);
         setLocale(userLocale);
-  
+
         const data = await fetchCoursesAndAssignments(baseUrl);
         if (data) {
           setCourses(data.courses);
@@ -134,10 +118,10 @@ const AssignmentTimeline: React.FC<AssignmentTimelineProps> = ({ initialMarkedAs
         console.error('Error:', error);
       }
     };
-  
+
     fetchData();
   }, []); // Only run once
-  
+
   useEffect(() => {
     if (courses.length > 0 && assignments.length > 0) {
       const groups = createGroups(courses);
@@ -146,14 +130,19 @@ const AssignmentTimeline: React.FC<AssignmentTimelineProps> = ({ initialMarkedAs
     }
   }, [courses, assignments, markedAssignmentIds]);
 
-  const options = { ...defaultOptions, locale: locale };
+  const options = {
+    ...defaultOptions, locale: locale, tooltip: {
+      ...defaultOptions.tooltip,
+      template: tooltipTemplateWithLocale
+    }
+  };
 
   return (
     <div id="assignment-timeline">
-      <Timeline 
-        {...defaultProps} 
-        ref={timelineRef}        
-        options={options} 
+      <Timeline
+        {...defaultProps}
+        ref={timelineRef}
+        options={options}
         clickHandler={clickHandler}
       />
     </div>

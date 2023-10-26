@@ -1,5 +1,4 @@
-const SUPPORTED_LOCALES = ['en', 'it', 'nl', 'de', 'fr', 'uk', 'ru', 'pl', 'pt', 'sv', 'nb', 'lt'];
-export const DEFAULT_LOCALE = 'en';
+import { DEFAULT_LOCALE, SUPPORTED_LOCALES } from "./i18n";
 
 const USER_PATH = '/api/v1/users/self';
 const COURSES_PATH = '/api/v1/courses';
