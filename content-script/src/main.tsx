@@ -38,18 +38,39 @@ const getInitialMarkedAssignments = () => {
     });
 };
 
+const getInitialTimelinePositions = () => {
+    return new Promise<{ start: string; end: string }>((resolve) => {
+        chrome.storage.local.get(
+            ["lastStartTimelinePosition", "lastEndTimelinePosition"],
+            (result) => {
+                const lastStartTimelinePosition =
+                    result.lastStartTimelinePosition || undefined;
+                const lastEndTimelinePosition =
+                    result.lastEndTimelinePosition || undefined;
+                resolve({
+                    start: lastStartTimelinePosition,
+                    end: lastEndTimelinePosition,
+                });
+            },
+        );
+    });
+};
+
 const getBaseUrl = () => {
     return window.location.origin;
 };
 
 const init = async () => {
     const initialMarkedAssignments = await getInitialMarkedAssignments();
+    const { start, end } = await getInitialTimelinePositions();
 
     root.render(
         <React.StrictMode>
             <AssignmentTimeline
-                initialMarkedAssignments={initialMarkedAssignments}
+                markedAssignments={initialMarkedAssignments}
                 baseUrl={getBaseUrl()}
+                timelineStart={start}
+                timelineEnd={end}
             />
         </React.StrictMode>,
     );
