@@ -1,0 +1,7 @@
+# Top-most EditorConfig file
+root = true
+
+# Matches multiple file types: JavaScript, JSON, JSX, TypeScript, TSX, HTML, CSS, SCSS
+[*.{js,json,jsx,ts,tsx,html,css,scss}]
+indent_style = space
+indent_size = 4
