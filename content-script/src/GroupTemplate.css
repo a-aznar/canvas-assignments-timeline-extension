@@ -1,0 +1,9 @@
+.modules-link {
+    color: blue;
+    text-decoration: none;
+    cursor: pointer;
+}
+
+.modules-link:hover {
+    text-decoration: underline;
+}

@@ -4,6 +4,7 @@ import Timeline from 'react-vis-timeline';
 
 import { fetchUserLocale, fetchCoursesAndAssignments } from './dataService';
 import TooltipTemplate from './TooltipTemplate';
+import GroupTemplate from './GroupTemplate'; 
 import { DEFAULT_LOCALE } from './i18n';
 
 import './AssignmentTimeline.css';
@@ -89,6 +90,11 @@ const AssignmentTimeline: React.FC<AssignmentTimelineProps> = ({ initialMarkedAs
     return ReactDOMServer.renderToString(tooltipElement as React.ReactElement);
   };
 
+  const groupTemplate = (item: any, element: any, data: any) => {    
+    const groupTemplate = GroupTemplate({ group: item, baseUrl });
+    return ReactDOMServer.renderToString(groupTemplate as React.ReactElement);
+  };
+
   const clickHandler = (props: any) => {
     if (!props.item) return;
 
@@ -134,7 +140,8 @@ const AssignmentTimeline: React.FC<AssignmentTimelineProps> = ({ initialMarkedAs
     ...defaultOptions, locale: locale, tooltip: {
       ...defaultOptions.tooltip,
       template: tooltipTemplateWithLocale
-    }
+    },
+    groupTemplate: groupTemplate
   };
 
   return (
