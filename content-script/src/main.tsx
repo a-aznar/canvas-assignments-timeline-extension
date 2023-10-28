@@ -6,7 +6,9 @@ import AssignmentTimeline from "./AssignmentTimeline";
 const CONTENT_SCRIPT_ROOT_ELEMENT_ID = "content-script-root";
 
 const dashboard = document.querySelector("#dashboard");
-const dashboardHeaderContainer = document.querySelector("#dashboard_header_container");
+const dashboardHeaderContainer = document.querySelector(
+    "#dashboard_header_container",
+);
 
 const app = document.createElement("div");
 app.id = CONTENT_SCRIPT_ROOT_ELEMENT_ID;
@@ -17,33 +19,40 @@ app.id = CONTENT_SCRIPT_ROOT_ELEMENT_ID;
 //
 // Also control when the content script is injected from the manifest.json:
 // https://developer.chrome.com/docs/extensions/mv3/content_scripts/#run_time
-if (dashboard && dashboardHeaderContainer && dashboardHeaderContainer.nextSibling) {
-  dashboard.insertBefore(app, dashboardHeaderContainer.nextSibling);
+if (
+    dashboard &&
+    dashboardHeaderContainer &&
+    dashboardHeaderContainer.nextSibling
+) {
+    dashboard.insertBefore(app, dashboardHeaderContainer.nextSibling);
 }
 
 const container = document.getElementById(CONTENT_SCRIPT_ROOT_ELEMENT_ID);
 const root = createRoot(container!);
 
 const getInitialMarkedAssignments = () => {
-  return new Promise<number[]>((resolve) => {
-    chrome.storage.local.get(['markedAssignmentIds'], (result) => {
-      resolve(result.markedAssignmentIds || []);
+    return new Promise<number[]>((resolve) => {
+        chrome.storage.local.get(["markedAssignmentIds"], (result) => {
+            resolve(result.markedAssignmentIds || []);
+        });
     });
-  });
 };
 
 const getBaseUrl = () => {
-  return window.location.origin;
+    return window.location.origin;
 };
 
 const init = async () => {
-  const initialMarkedAssignments = await getInitialMarkedAssignments();
+    const initialMarkedAssignments = await getInitialMarkedAssignments();
 
-  root.render(
-    <React.StrictMode>
-      <AssignmentTimeline initialMarkedAssignments={initialMarkedAssignments} baseUrl={getBaseUrl()} />
-    </React.StrictMode>
-  );
+    root.render(
+        <React.StrictMode>
+            <AssignmentTimeline
+                initialMarkedAssignments={initialMarkedAssignments}
+                baseUrl={getBaseUrl()}
+            />
+        </React.StrictMode>,
+    );
 };
 
 init();
