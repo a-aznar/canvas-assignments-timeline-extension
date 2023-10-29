@@ -73,7 +73,7 @@ export function createOptions(
         start: lastStartTimelinePosition || new Date(),
         end:
             lastEndTimelinePosition ||
-            new Date(Date.now() + _7_DAYS_MILLIS * 2), // 2 weeks from now
+            new Date(Date.now() + _7_DAYS_MILLIS * 2),
         locale: locale,
         tooltip: {
             ...defaultOptions.tooltip,

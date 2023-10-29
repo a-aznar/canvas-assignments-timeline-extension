@@ -1,40 +1,66 @@
 .App {
-  width: 23rem;
-  text-align: center;
-}
-
-.App-logo {
-  width: unset;
-  height: 40vmin;
-  pointer-events: none;
-}
-
-@media (prefers-reduced-motion: no-preference) {
-  .App-logo {
-    animation: App-logo-spin infinite 20s linear;
-  }
+    font-family: Arial, sans-serif;
+    padding: 20px;
+    width: 23rem;
+    background-color: rgba(223, 217, 217, 0.616);
 }
 
 .App-header {
-  background-color: #282c34;
-  min-height: 100vh;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  font-size: calc(10px + 2vmin);
-  color: white;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
 }
 
-.App-link {
-  color: #61dafb;
+h1 {
+    font-size: 24px;
+    margin-bottom: 0px;
+    margin-top: 0px;
 }
 
-@keyframes App-logo-spin {
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(360deg);
-  }
+.gradient-text {
+    /* Diagonal gradient from top-left to bottom-right */
+    background: -webkit-linear-gradient(to bottom left, darkblue, turquoise);
+    /* For Safari 5.1 to 6.0 */
+    background: linear-gradient(to bottom left, darkblue, turquoise);
+    /* Standard syntax */
+    -webkit-background-clip: text;
+    background-clip: text;
+    -webkit-text-fill-color: transparent;
+    color: transparent;
+    /* Fallback for browsers that don't support text-fill-color */
+}
+
+.App-description {
+    margin-bottom: 25px;
+    margin-top: 8px;
+}
+
+.App-more-features {
+    font-size: 1.07142857em;
+    font-weight: 700;
+}
+
+.App-request-features {
+    margin-top: 5px;
+    color: cadetblue;
+    margin-left: 3px;
+}
+
+.App-leave-star {
+    margin-top: 4px;
+    font-size: 0.95em;
+    text-decoration: none;
+    color: gray;
+}
+
+.icons {
+    display: flex;
+    gap: 16px;
+    margin-top: 30px;
+}
+
+img {
+    width: 24px;
+    height: 24px;
 }
