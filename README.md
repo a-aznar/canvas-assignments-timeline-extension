@@ -24,7 +24,9 @@
 </p>
 
 <div align="center">
-  [![Chrome](https://user-images.githubusercontent.com/53124886/111952712-34f12300-8aee-11eb-9fdd-ad579a1eb235.png)](https://chrome.google.com/webstore/detail/canvas-assignments-timeline/ifgeabdejopdnkdojbpcjhljclchmcbn)
+  <a href="https://chrome.google.com/webstore/detail/canvas-assignments-timeline/ifgeabdejopdnkdojbpcjhljclchmcbn">
+    <img src="https://user-images.githubusercontent.com/53124886/111952712-34f12300-8aee-11eb-9fdd-ad579a1eb235.png" alt="Chrome">
+  </a>
 </div>
 
 # Manage Your Canvas Assignments Like Never Before!
