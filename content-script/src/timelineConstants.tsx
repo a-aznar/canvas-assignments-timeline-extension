@@ -15,7 +15,6 @@ export const defaultOptions = {
     stack: false,
     orientation: "top",
     showTooltips: true,
-    xss: { disabled: true },
     zoomMin: _7_DAYS_MILLIS,
     zoomMax: _1_MONTH_MILLIS * 3,
     tooltip: {
