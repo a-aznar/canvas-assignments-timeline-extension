@@ -1,5 +1,6 @@
-export const _7_DAYS_MILLIS = 1000 * 60 * 60 * 24 * 7;
-const _1_MONTH_MILLIS = 1000 * 60 * 60 * 24 * 31;
+export const _1_DAY_MILLIS = 1000 * 60 * 60 * 24;
+export const _7_DAYS_MILLIS = _1_DAY_MILLIS * 7;
+const _1_MONTH_MILLIS = _1_DAY_MILLIS * 31;
 
 export const defaultProps = {
     initialGroups: [],

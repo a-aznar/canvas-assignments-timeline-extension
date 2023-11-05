@@ -1,6 +1,6 @@
 import classNames from "classnames";
 
-import { _7_DAYS_MILLIS } from "./timelineConstants";
+import { _1_DAY_MILLIS, _7_DAYS_MILLIS } from "./timelineConstants";
 
 export interface Assignment {
     id: number;
@@ -22,7 +22,7 @@ export function createItems(
     return assignments
         .filter((assignment) => assignment && assignment.due_at != null)
         .map((assignment) => ({
-            start: assignment.unlock_at,
+            start: assignment.unlock_at || new Date(new Date(assignment.due_at).getTime() - _1_DAY_MILLIS),
             end: assignment.due_at,
             content: assignment.name,
             id: assignment.id,
