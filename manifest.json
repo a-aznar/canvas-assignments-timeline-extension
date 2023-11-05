@@ -1,7 +1,7 @@
 {
     "manifest_version": 3,
     "name": "Canvas Assignments Timeline",
-    "version": "1.0.0",
+    "version": "1.1.0",
     "action": {
         "default_title": "Canvas Assignments Timeline",
         "default_popup": "index.html",

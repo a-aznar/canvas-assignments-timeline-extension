@@ -26,6 +26,9 @@ const TooltipTemplate: React.FC<TooltipTemplateProps> = ({
     const daysUntilDue = dueDate.diff(today, "days");
     const daysUntilUnlock = unlockDate.diff(today, "days");
 
+    const unlockDateString = unlockDate.format("YYYY-MM-DD");
+    const dueDateString = dueDate.format("YYYY-MM-DD");
+
     const daysUntilDueLabel =
         daysUntilDue >= 0
             ? `${daysUntilDue} ${t("daysLeft", locale)}`
@@ -40,10 +43,10 @@ const TooltipTemplate: React.FC<TooltipTemplateProps> = ({
             <strong>{item.content}</strong>
             <br />
             <br />
-            {t("unlockDate", locale)}: {unlockDate.format("YYYY-MM-DD")} (
+            {t("unlockDate", locale)}: {unlockDateString} (
             {daysUntilUnlockLabel})
             <br />
-            {t("dueDate", locale)}: {dueDate.format("YYYY-MM-DD")} (
+            {t("dueDate", locale)}: {dueDateString} (
             {daysUntilDueLabel})
             <br />
             <br />
