@@ -5,6 +5,8 @@ const COURSES_PATH = "/api/v1/courses";
 const COURSE_ASSIGNMENTS_PATH = (courseId: number) =>
     `/api/v1/courses/${courseId}/assignments`;
 
+const SEVEN_DAYS_AGO_DATE = new Date(Date.now() - 7 * 24 * 60 * 60 * 1000)
+
 export const fetchUserLocale = async (baseUrl: string) => {
     const USER_URL = baseUrl + USER_PATH;
 
@@ -59,8 +61,11 @@ export const fetchCoursesAndAssignments = async (baseUrl: string) => {
         );
 
         courses = courses.filter(
-            (_course: any, index: number) => assignmentsData[index].length > 0,
+            (_course: any, index: number) =>
+                assignmentsData[index].length > 0
+                && assignmentsData[index].some((assignment: { due_at: string | number | Date; }) => new Date(assignment.due_at) > SEVEN_DAYS_AGO_DATE)
         );
+
         const assignments = assignmentsData.filter(
             (assignmentData) => assignmentData.length > 0,
         );
