@@ -4,11 +4,28 @@ import "./main.css";
 import AssignmentTimeline from "./AssignmentTimeline";
 
 const CONTENT_SCRIPT_ROOT_ELEMENT_ID = "content-script-root";
-
-const dashboard = document.querySelector("#dashboard");
+const dashboard = document.querySelector("#main") as HTMLElement;
 const dashboardHeaderContainer = document.querySelector(
-    "#dashboard_header_container",
+    "#not_right_side",
 );
+
+if (window.location.pathname === "/") {
+    if (dashboard) {
+        dashboard.style.paddingLeft = "5%";
+        dashboard.style.paddingTop = "2%";
+        dashboard.style.paddingRight = "5%";
+    }
+    
+    const wrapper = document.querySelector("#wrapper") as HTMLElement;
+    if (wrapper) {
+        wrapper.classList.remove("ic-Layout-wrapper");
+    }
+    
+    const footer = document.querySelector("#footer") as HTMLElement;
+    if (footer) {
+        footer.style.paddingLeft = "5%";
+    }
+}
 
 const app = document.createElement("div");
 app.id = CONTENT_SCRIPT_ROOT_ELEMENT_ID;
@@ -22,9 +39,10 @@ app.id = CONTENT_SCRIPT_ROOT_ELEMENT_ID;
 if (
     dashboard &&
     dashboardHeaderContainer &&
-    dashboardHeaderContainer.nextSibling
+    dashboardHeaderContainer.previousSibling &&
+    window.location.pathname === "/"
 ) {
-    dashboard.insertBefore(app, dashboardHeaderContainer.nextSibling);
+    dashboard.insertBefore(app, dashboardHeaderContainer);
 }
 
 const container = document.getElementById(CONTENT_SCRIPT_ROOT_ELEMENT_ID);
